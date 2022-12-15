@@ -1,0 +1,103 @@
+<script>
+    var ob=window.location.href;
+    var re=JSON.stringify(ob);
+    let url = window.location.search;
+    let querystring = new URLSearchParams(url);
+    console.log(url);
+    let name = querystring.get('test');
+    console.log(name);
+
+</script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ms+Madi&family=Qwitcher+Grypen&family=Silkscreen&display=swap"
+        rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">
+    <title>Image-Download By Rahul Timbaliya</title>
+</head>
+
+<body id="body">
+    <svg id="svg" width="10%" height="20%" viewBox="0 0 57 57" xmlns="http://www.w3.org/2000/svg" stroke="white">
+        <g fill="none" fill-rule="evenodd">
+            <g transform="translate(1 1)" stroke-width="2">
+                <circle cx="5" cy="50" r="5">
+                    <animate attributeName="cy" begin="0s" dur="2.2s" values="50;5;50;50" calcMode="linear"
+                        repeatCount="indefinite" />
+                    <animate attributeName="cx" begin="0s" dur="2.2s" values="5;27;49;5" calcMode="linear"
+                        repeatCount="indefinite" />
+                </circle>
+                <circle cx="27" cy="5" r="5">
+                    <animate attributeName="cy" begin="0s" dur="2.2s" from="5" to="5" values="5;50;50;5"
+                        calcMode="linear" repeatCount="indefinite" />
+                    <animate attributeName="cx" begin="0s" dur="2.2s" from="27" to="27" values="27;49;5;27"
+                        calcMode="linear" repeatCount="indefinite" />
+                </circle>
+                <circle cx="49" cy="50" r="5">
+                    <animate attributeName="cy" begin="0s" dur="2.2s" values="50;50;5;50" calcMode="linear"
+                        repeatCount="indefinite" />
+                    <animate attributeName="cx" from="49" to="49" begin="0s" dur="2.2s" values="49;5;27;49"
+                        calcMode="linear" repeatCount="indefinite" />
+                </circle>
+            </g>
+        </g>
+
+    </svg>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"
+    integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs=" crossorigin="anonymous"></script>
+<script>
+    
+    if(window.innerWidth <500){
+        console
+        document.write("<h1> Open Only In Desktop Screen & Desktop View Please Rotate Your Mobile Or Enable Deskotp Site Option</h1>");
+    }
+    else{
+    var h1 = document.createElement('h1');
+    document.getElementById('body').appendChild(h1);
+    document.write('<h1 id="new">Fetching Image......</h1>');
+    document.getElementById("svg").style="visibility:false";
+    let randomURL = 'https://source.unsplash.com/random/1920x1080/?' + name;
+    axios.get(randomURL).then(data => {
+        let a = (data.request.responseURL);
+        console.log(a);
+        var img = document.createElement('img');
+        img.src = a;
+        var re = document.getElementById("new");
+        re.remove();
+        var s = document.getElementById("svg");
+        s.remove();
+        document.getElementById('body').appendChild(img);
+        fetch(a).then(res => res.blob()).then(file => {
+            console.log(file);
+            let tempUrl = URL.createObjectURL(file);
+            let atag = document.createElement("a");
+            atag.href = tempUrl;
+            atag.id = "down";
+            atag.text = "Download";
+            atag.style.textDecoration = "none";
+            atag.download = "Image-Downloder By Rahul-Timbaliya";
+            let atag2 = document.createElement("a");
+            atag2.href = "";
+            atag2.id="next"
+            atag2.text = "Next";
+
+            document.body.appendChild(atag);
+            document.body.appendChild(atag2);
+        });
+    });
+}
+</script>
+<script>
+
+</script>
+
+</html>
