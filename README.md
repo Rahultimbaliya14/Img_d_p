@@ -1,6 +1,6 @@
 # Img_d_p
 Hi' 🫠😊
-This My Own Created Project That Can Serve You High Quality Images Of Defrent Categories 
+This My Own Created Project That Can Serve You High Quality Images Of Different Categories 
 Also You Can Download Image With Pure Quallity 
 
 This Site Live On 👉
